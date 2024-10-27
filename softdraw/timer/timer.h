@@ -13,3 +13,10 @@ uint64_t sft_timer_now();
 * \param last The last tick count
 */
 uint64_t sft_timer_diff(uint64_t last);
+
+/**
+* \fn void sft_sleep(uint32_t ms)
+* \brief Pauses for milliseconds
+* \param ms Milliseconds to pause for
+*/
+void sft_sleep(uint32_t ms);

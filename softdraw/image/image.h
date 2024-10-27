@@ -48,7 +48,7 @@ void sft_image_fill(sft_image* image, sft_color color);
 * \fn void sft_image_delete(sft_image* image)
 * \brief Frees image memory
 * \param image Target image to be freed
-* \warning Image cannot be used
+* \warning Image cannot be used after deleting
 */
 void sft_image_delete(sft_image* image);
 

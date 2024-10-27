@@ -24,10 +24,3 @@ typedef struct
     uint32_t w;
     uint32_t h;
 } sft_rect;
-
-/**
-* \fn void sft_sleep(uint32_t ms)
-* \brief Pauses for milliseconds
-* \param ms Milliseconds to pause for
-*/
-void sft_sleep(uint32_t ms);
