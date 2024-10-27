@@ -5,9 +5,16 @@
 #define NOMINMAX
 #include <Windows.h>
 
-sft_point sft_mouse_pos()
+sft_point sft_mouse_pos(const sft_window* window)
 {
-	sft_point pt;
-	GetCursorPos(&pt);
-	return pt;
+    sft_point pt;
+    GetCursorPos(&pt);
+
+    if (window)
+    {
+        pt.x -= window->left;
+        pt.y -= window->top;
+    }
+
+    return pt;
 }

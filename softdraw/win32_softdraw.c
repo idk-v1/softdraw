@@ -8,19 +8,14 @@
 
 void sft_init()
 {
-	wc.hInstance = GetModuleHandleA(NULL);
-	wc.lpszClassName = wcName;
-	wc.lpfnWndProc = wndProc;
-	wc.hCursor = LoadCursorA(NULL, IDC_ARROW);
-	RegisterClassA(&wc);
+    wc.hInstance = GetModuleHandleA(NULL);
+    wc.lpszClassName = wcName;
+    wc.lpfnWndProc = wndProc;
+    wc.hCursor = LoadCursorA(NULL, IDC_ARROW);
+    RegisterClassA(&wc);
 }
 
 void sft_shutdown()
 {
-	UnregisterClassA(wcName, GetModuleHandleA(NULL));
-}
-
-void sft_sleep(uint32_t ms)
-{
-	Sleep(ms);
+    UnregisterClassA(wcName, GetModuleHandleA(NULL));
 }

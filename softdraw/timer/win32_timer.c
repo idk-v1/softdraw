@@ -8,15 +8,15 @@
 
 uint64_t sft_timer_now()
 {
-	uint64_t time;
-	uint64_t freq;
-	QueryPerformanceFrequency(&freq);
-	QueryPerformanceCounter(&time);
+    uint64_t time;
+    uint64_t freq;
+    QueryPerformanceFrequency(&freq);
+    QueryPerformanceCounter(&time);
 
-	return (1000000ull * time / freq);
+    return (1'000'000ull * time / freq);
 }
 
 uint64_t sft_timer_diff(uint64_t last)
 {
-	return sft_timer_now() - last;
+    return sft_timer_now() - last;
 }

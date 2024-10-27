@@ -132,8 +132,10 @@
     <ClCompile Include="softdraw\input\win32_input.c" />
     <ClCompile Include="softdraw\monitor\win32_monitor.c" />
     <ClCompile Include="softdraw\timer\win32_timer.c" />
+    <ClCompile Include="softdraw\win32_util.c" />
     <ClCompile Include="softdraw\win32_softdraw.c" />
     <ClCompile Include="softdraw\window\win32_window.c" />
+    <ClCompile Include="softdraw\window\window.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="softdraw\input\input.h" />

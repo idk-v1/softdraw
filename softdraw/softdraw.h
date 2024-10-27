@@ -10,11 +10,17 @@ extern "C" {
 #include "monitor/monitor.h"
 #include "util.h"
 
-	void sft_init();
+    /**
+    * \fn sft_init()
+    * \brief Setting up globals and OS specific functions
+    */
+    void sft_init();
 
-	void sft_shutdown();
-
-	void sft_sleep(uint32_t ms);
+    /**
+    * \fn sft_shutdown()
+    * \brief Cleaning up globals and OS specific functions
+    */
+    void sft_shutdown();
 
 #ifdef __cplusplus
 }

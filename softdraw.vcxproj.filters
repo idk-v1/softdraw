@@ -36,6 +36,12 @@
     <ClCompile Include="softdraw\monitor\win32_monitor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="softdraw\window\window.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="softdraw\win32_util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="softdraw\window\window.h">
