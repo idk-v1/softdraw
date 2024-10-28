@@ -11,13 +11,11 @@ extern "C" {
 #include "util.h"
 
     /**
-    * \fn sft_init()
     * \brief Setting up globals and OS specific functions
     */
     void sft_init();
 
     /**
-    * \fn sft_shutdown()
     * \brief Cleaning up globals and OS specific functions
     */
     void sft_shutdown();

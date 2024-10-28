@@ -4,19 +4,16 @@
 #include "../image/image.h"
 
 /**
-* \fn uint32_t sft_screenWidth()
 * \brief Returns the primary monitor width
 */
 uint32_t sft_screenWidth();
 
 /**
-* \fn uint32_t sft_screenHeight()
 * \brief Returns the primary monitor height
 */
 uint32_t sft_screenHeight();
 
 /**
-* \fn void sft_screenshot(sft_image* image)
 * \brief Captures the entire screen
 * \param image [out] Returns a screenshot
 * 

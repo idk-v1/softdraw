@@ -5,7 +5,7 @@
 #define NOMINMAX
 #include <Windows.h>
 
-sft_point sft_mouse_pos(const sft_window* window)
+sft_point sft_input_mousePos(const sft_window* window)
 {
     sft_point pt;
     GetCursorPos(&pt);

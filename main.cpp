@@ -4,6 +4,7 @@ int main()
 {
     sft_init();
 
+    sft_sleep(3000);
     sft_image* screen = sft_image_create(0, 0);
     sft_screenshot(screen);
 
@@ -17,7 +18,7 @@ int main()
         sft_image_drawImage(window->frameBuf, screen, 
             0, 0, screen->width, screen->height, 0, 0);
         sft_image_drawRect(window->frameBuf, 
-            sft_mouse_pos(NULL).x - 50, sft_mouse_pos(NULL).y - 50, 100, 100, 0x00000000);
+            sft_input_mousePos(NULL).x - 50, sft_input_mousePos(NULL).y - 50, 100, 100, 0x00000000);
         sft_window_display(window);
     }
     sft_window_close(window);
