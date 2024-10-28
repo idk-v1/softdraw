@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="softdraw\image\image.c" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main.c" />
     <ClCompile Include="softdraw\input\win32_input.c" />
     <ClCompile Include="softdraw\monitor\win32_monitor.c" />
     <ClCompile Include="softdraw\timer\win32_timer.c" />
