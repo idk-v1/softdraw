@@ -1,4 +1,8 @@
 #pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "window.h"
 
 #define WIN32_LEAN_AND_MEAN
@@ -25,3 +29,7 @@ static const char* wcName = "softdraw";
 * \param styleEx [out] Windows specific extended window style
 */
 void flagsToWin32Style(sft_flags flags, uint32_t* style, uint32_t* styleEx);
+
+#ifdef __cplusplus
+}
+#endif

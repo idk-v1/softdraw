@@ -1,4 +1,8 @@
 #pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 #include "../image/image.h"
@@ -22,3 +26,7 @@ uint32_t sft_screenHeight();
 * This was also tested on a 2012 laptop, but it was significantly faster
 */
 void sft_screenshot(sft_image* image);
+
+#ifdef __cplusplus
+}
+#endif

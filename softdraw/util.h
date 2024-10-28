@@ -1,4 +1,8 @@
 #pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 #define sft_min(a, b) ((a) < (b) ? (a) : (b))
@@ -28,3 +32,7 @@ typedef struct
     uint32_t w;
     uint32_t h;
 } sft_rect;
+
+#ifdef __cplusplus
+}
+#endif

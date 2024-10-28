@@ -1,4 +1,8 @@
 #pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include "../util.h"
 
@@ -86,3 +90,7 @@ void sft_image_drawRect(sft_image* dest,
 */
 inline void _sft_image_adjustRect(int32_t* x, int32_t* y, uint32_t* w, uint32_t* h, 
     uint64_t width, uint64_t height);
+
+#ifdef __cplusplus
+}
+#endif

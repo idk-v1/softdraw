@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #pragma once
 #include <stdint.h>
 #include <stdbool.h>
@@ -184,3 +188,7 @@ void sft_window_defOnResize(sft_window* window, uint32_t width, uint32_t height)
 * \param top The new topmost position of the window
 */
 void sft_window_defOnMove(sft_window* window, int32_t left, int32_t top);
+
+#ifdef __cplusplus
+}
+#endif
