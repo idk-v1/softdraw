@@ -16,8 +16,8 @@ void sft_window_defOnResize(sft_window* window, uint32_t width, uint32_t height)
 
 void sft_window_defOnMove(sft_window* window, int32_t left, int32_t top)
 {
-    window->width = left;
-    window->height = top;
+    window->left = left;
+    window->top = top;
 }
 
 void sft_window_display(sft_window* window)

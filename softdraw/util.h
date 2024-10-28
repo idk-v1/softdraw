@@ -5,6 +5,10 @@
 #define sft_max(a, b) ((a) > (b) ? (a) : (b))
 #define sft_clamp(val, min, max) sft_min(sft_max(val, min), max)
 
+#define sft_abs(val) (val < 0 ? -val : val)
+
+#define sft_setFlag(flags, flag, val) if (val) (flags) |= (flag); else (flags) &= ~(flag);
+
 typedef struct
 {
     uint32_t w;

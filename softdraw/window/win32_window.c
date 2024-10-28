@@ -40,35 +40,34 @@ LRESULT __stdcall wndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
 
 void flagsToWin32Style(sft_flags flags, uint32_t* style, uint32_t* styleEx)
 {
-    *style = WS_OVERLAPPEDWINDOW | WS_VISIBLE;
+    *style = WS_OVERLAPPEDWINDOW;
     *styleEx = WS_EX_LAYERED;
 
-    if (flags & sft_flag_hidden)
-        *style ^= WS_VISIBLE;
+    sft_setFlag(*style, WS_VISIBLE, 
+        !(flags & sft_flag_hidden));
 
-    if (flags & sft_flag_noresize)
-        *style ^= WS_THICKFRAME | WS_MAXIMIZEBOX;
+    sft_setFlag(*style, WS_THICKFRAME | WS_MAXIMIZEBOX, 
+        !(flags & sft_flag_noresize));
 
-    if (flags & sft_flag_borderless)
-    {
-        *style ^= WS_CAPTION | WS_SYSMENU | WS_THICKFRAME;
-        *style |= WS_POPUP;
-    }
+    sft_setFlag(*style, WS_CAPTION | WS_SYSMENU | WS_THICKFRAME,
+        !(flags & sft_flag_borderless));
+    sft_setFlag(*style, WS_POPUP,
+        (flags & sft_flag_borderless));
 
-    if (flags & sft_flag_maximized)
-        *style |= WS_MAXIMIZE;
+    sft_setFlag(*style, WS_MAXIMIZE,
+        (flags & sft_flag_maximized));
 
-    if (flags & sft_flag_minimized)
-        *style |= WS_MINIMIZE;
+    sft_setFlag(*style, WS_MINIMIZE,
+        (flags & sft_flag_minimized));
 
-    if (flags & sft_flag_topmost)
-        *styleEx |= WS_EX_TOPMOST;
+    sft_setFlag(*styleEx, WS_EX_TOPMOST,
+        (flags & sft_flag_topmost));
 
-    if (flags & sft_flag_passthru)
-        *styleEx |= WS_EX_TRANSPARENT;
+    sft_setFlag(*styleEx, WS_EX_TRANSPARENT,
+        (flags & sft_flag_passthru));
 
-    if (flags & sft_flag_syshide)
-        *styleEx |= WS_EX_TOOLWINDOW;
+    sft_setFlag(*styleEx, WS_EX_TOOLWINDOW,
+        (flags & sft_flag_syshide));
 }
 
 bool _sft_window_open(sft_window* window, const char* title, uint32_t width, uint32_t height, int32_t left, int32_t top, sft_flags flags)
@@ -163,4 +162,38 @@ void _sft_window_close(sft_window* window)
         return;
 
     DestroyWindow(window->handle);
+}
+
+void sft_window_setFlag(sft_window* window, sft_flags enable, sft_flags disable)
+{
+    if (!window)
+        return;
+
+    uint32_t style = GetWindowLongPtrA(window->handle, GWL_STYLE);
+    uint32_t styleEx = GetWindowLongPtrA(window->handle, GWL_EXSTYLE);
+
+    sft_setFlag(window->flags, enable, true);
+    sft_setFlag(window->flags, disable, false);
+
+    flagsToWin32Style(window->flags, &style, &styleEx);
+
+    SetWindowLongPtrA(window->handle, GWL_STYLE, style);
+    SetWindowLongPtrA(window->handle, GWL_EXSTYLE, styleEx);
+
+    // Dark titlebar
+    DWORD value = window->flags & sft_flag_darkmode;
+    DwmSetWindowAttribute(window->handle,
+        DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
+
+    // Left and top needed for fullscreen and stuff
+    SetWindowPos(window->handle, NULL, 
+        window->left, window->top, window->width, window->height, 
+        SWP_FRAMECHANGED | SWP_SHOWWINDOW | SWP_NOACTIVATE);
+
+    if (window->flags & sft_flag_topmost)
+        SetWindowPos(window->handle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+    else
+        SetWindowPos(window->handle, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+
+    InvalidateRect(window->handle, NULL, true);
 }

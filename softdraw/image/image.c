@@ -84,16 +84,16 @@ void _sft_image_adjustRect(int32_t* x, int32_t* y, uint32_t* w, uint32_t* h,
 {
     if (*x < 0)
     {
-        *w += *x;
+        *w -= sft_min(sft_abs(*x), *w);
         *x = 0;
     }
     if (*y < 0)
     {
-        *h += *y;
+        *h -= sft_min(sft_abs(*y), *h);
         *y = 0;
     }
     if (*x + *w >= width)
-        *w = width - *x;
+        *w = width - sft_min(*x, width);
     if (*y + *h >= height)
-        *h = height - *y;
+        *h = height - sft_min(*y, height);
 }

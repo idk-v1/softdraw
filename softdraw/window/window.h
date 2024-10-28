@@ -103,6 +103,14 @@ typedef struct sft_window
 } sft_window;
 
 /**
+* \brief Sets window customization option after window creation
+* \param window The window to apply settings to
+* \param enable The settings to enable
+* \param disable The settings to disable
+*/
+void sft_window_setFlag(sft_window* window, sft_flags enable, sft_flags disable);
+
+/**
 * \brief Creates a window and returns a pointer to it
 * \param title Title of window
 * \param width Width of window
