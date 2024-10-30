@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="softdraw\window\win32_window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,6 +34,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="softdraw\input\input.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="softdraw\timer\timer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

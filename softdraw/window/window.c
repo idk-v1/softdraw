@@ -25,13 +25,14 @@ void sft_window_display(sft_window* window)
     if (!window)
         return;
 
-    if (window->fpsLimit > 0 &&
-        sft_timer_diff(window->_lastFrame) < 1000000ull / window->fpsLimit)
-        return;
+    if (window->fpsLimit > 0)
+    {
+        if (sft_timer_msPassed(&window->_lastFrame, 1000 / window->fpsLimit))
+            _sft_window_display(window);
+    }
+    else
+        _sft_window_display(window);
 
-    _sft_window_display(window);
-
-    window->_lastFrame = sft_timer_now();
 }
 
 sft_window* sft_window_open(const char* title, uint32_t width, uint32_t height, int32_t left, int32_t top, sft_flags flags)

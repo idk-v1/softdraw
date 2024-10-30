@@ -16,11 +16,6 @@ uint64_t sft_timer_now()
     return (1'000'000ull * time / freq);
 }
 
-uint64_t sft_timer_diff(uint64_t last)
-{
-    return sft_timer_now() - last;
-}
-
 void sft_sleep(uint32_t ms)
 {
     Sleep(ms);
