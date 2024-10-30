@@ -13,12 +13,19 @@ extern "C" {
     /**
     * \brief Setting up globals and OS specific functions
     */
-    void sft_init();
+    void sft_init()
+    {
+        sft_window_init();
+        sft_input_updateKeys();
+    }
 
     /**
     * \brief Cleaning up globals and OS specific functions
     */
-    void sft_shutdown();
+    void sft_shutdown()
+    {
+        sft_window_shutdown();
+    }
 
 #ifdef __cplusplus
 }

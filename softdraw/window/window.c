@@ -110,3 +110,20 @@ void sft_window_close(sft_window* window)
     sft_image_delete(window->frameBuf);
     free(window);
 }
+
+void sft_window_drawImage(sft_window* dest, const sft_image* src, int32_t srcX, int32_t srcY, uint32_t srcW, uint32_t srcH, int32_t destX, int32_t destY)
+{
+    if (!dest || !src)
+        return;
+
+    sft_image_drawImage(dest->frameBuf, src, 
+        srcX, srcY, srcW, srcH, destX, destY);
+}
+
+void sft_window_drawRect(sft_window* dest, int32_t x, int32_t y, uint32_t w, uint32_t h, sft_color color)
+{
+    if (!dest)
+        return;
+
+    sft_image_drawRect(dest->frameBuf, x, y, w, h, color);
+}

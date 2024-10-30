@@ -1,12 +1,11 @@
 #include "window.h"
-#include "win32_window.h"
 
 #include <dwmapi.h>
 #pragma comment(lib, "Dwmapi.lib")
 
 LRESULT __stdcall wndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
 {
-    sft_window* window = GetWindowLongPtrA(hwnd, GWLP_USERDATA);
+    sft_window* window = (sft_window*)GetWindowLongPtrA(hwnd, GWLP_USERDATA);
     if (!window)
         return DefWindowProcA(hwnd, msg, wp, lp);
 
@@ -81,7 +80,7 @@ bool _sft_window_open(sft_window* window, const char* title, uint32_t width, uin
     flagsToWin32Style(flags, &style, &styleEx);
 
     window->handle = CreateWindowExA(
-        styleEx, wcName, window->title, style,
+        styleEx, "softdraw", window->title, style,
         window->left, window->top, window->width, window->height,
         NULL, NULL, GetModuleHandleA(NULL), NULL);
 
@@ -112,7 +111,7 @@ bool _sft_window_open(sft_window* window, const char* title, uint32_t width, uin
             0, 255, LWA_ALPHA);
 
         // Give window procedure the window pointer
-        SetWindowLongPtrA(window->handle, GWLP_USERDATA, window);
+        SetWindowLongPtrA(window->handle, GWLP_USERDATA, (LONG_PTR)window);
 
         return true;
     }
@@ -122,7 +121,7 @@ bool _sft_window_open(sft_window* window, const char* title, uint32_t width, uin
 void _sft_window_update(sft_window* window)
 {
     if (!window)
-        return false;
+        return;
 
     MSG msg;
     while (PeekMessageA(&msg, window->handle, 0, 0, PM_REMOVE))
@@ -169,8 +168,8 @@ void sft_window_setFlag(sft_window* window, sft_flags enable, sft_flags disable)
     if (!window)
         return;
 
-    uint32_t style = GetWindowLongPtrA(window->handle, GWL_STYLE);
-    uint32_t styleEx = GetWindowLongPtrA(window->handle, GWL_EXSTYLE);
+    uint32_t style = (uint32_t)GetWindowLongPtrA(window->handle, GWL_STYLE);
+    uint32_t styleEx = (uint32_t)GetWindowLongPtrA(window->handle, GWL_EXSTYLE);
 
     sft_setFlag(window->flags, enable, true);
     sft_setFlag(window->flags, disable, false);
@@ -196,4 +195,20 @@ void sft_window_setFlag(sft_window* window, sft_flags enable, sft_flags disable)
         SetWindowPos(window->handle, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
 
     InvalidateRect(window->handle, NULL, true);
+}
+
+void sft_window_init()
+{
+    WNDCLASSA wc;
+    memset(&wc, 0, sizeof(wc));
+    wc.hInstance = GetModuleHandleA(NULL);
+    wc.lpszClassName = "softdraw";
+    wc.lpfnWndProc = wndProc;
+    wc.hCursor = LoadCursorA(NULL, MAKEINTRESOURCEA(32512));
+    RegisterClassA(&wc);
+}
+
+void sft_window_shutdown()
+{
+    UnregisterClassA("softdraw", GetModuleHandleA(NULL));
 }

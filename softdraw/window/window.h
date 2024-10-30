@@ -189,6 +189,43 @@ void sft_window_defOnResize(sft_window* window, uint32_t width, uint32_t height)
 */
 void sft_window_defOnMove(sft_window* window, int32_t left, int32_t top);
 
+/**
+* \brief Setting up globals and OS specific functions
+*/
+void sft_window_init();
+
+/**
+* \brief Cleaning up globals and OS specific functions
+*/
+void sft_window_shutdown();
+
+/**
+* \brief Copies pixels from a source image to a destination window
+* \param dest Destination window to draw to
+* \param src Source image to get pixels from
+* \param srcX Leftmost position to get pixels from source
+* \param srcY Topmost position to get pixels from source
+* \param srcW Width of copied image
+* \param srcW Height of copied image
+* \param destX Leftmost position to copy to on destination image
+* \param destY Topmost position to copy to on destination image
+*/
+void sft_window_drawImage(sft_window* dest, const sft_image* src,
+    int32_t srcX, int32_t srcY, uint32_t srcW, uint32_t srcH,
+    int32_t destX, int32_t destY);
+
+/**
+* \brief Fills pixels in rectangle with a color
+* \param dest Destination window to draw to
+* \param x Leftmost position of rectangle
+* \param y Topmost positionof rectangle
+* \param w Width of rectangle
+* \param h Height of rectangle
+* \param color Color to fill rectangle with
+*/
+void sft_window_drawRect(sft_window* dest,
+    int32_t x, int32_t y, uint32_t w, uint32_t h, sft_color color);
+
 #ifdef __cplusplus
 }
 #endif

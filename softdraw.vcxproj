@@ -127,12 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="softdraw\input\input.c" />
     <ClCompile Include="softdraw\image\image.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="softdraw\input\win32_input.c" />
     <ClCompile Include="softdraw\monitor\win32_monitor.c" />
     <ClCompile Include="softdraw\timer\win32_timer.c" />
-    <ClCompile Include="softdraw\win32_softdraw.c" />
     <ClCompile Include="softdraw\window\win32_window.c" />
     <ClCompile Include="softdraw\window\window.c" />
   </ItemGroup>
@@ -142,7 +142,6 @@
     <ClInclude Include="softdraw\monitor\monitor.h" />
     <ClInclude Include="softdraw\softdraw.h" />
     <ClInclude Include="softdraw\window\window.h" />
-    <ClInclude Include="softdraw\window\win32_window.h" />
     <ClInclude Include="softdraw\util.h" />
     <ClInclude Include="softdraw\timer\timer.h" />
   </ItemGroup>

@@ -21,9 +21,6 @@
     <ClCompile Include="softdraw\window\win32_window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="softdraw\win32_softdraw.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="softdraw\image\image.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,15 +36,15 @@
     <ClCompile Include="softdraw\window\window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="softdraw\input\input.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="softdraw\window\window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="softdraw\softdraw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="softdraw\window\win32_window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="softdraw\image\image.h">

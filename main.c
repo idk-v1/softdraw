@@ -14,11 +14,18 @@ int main()
 
     while (sft_window_update(window))
     {
-        sft_image_drawImage(window->frameBuf, screen, 
+        sft_input_updateKeys();
+        if (sft_input_keyReleased(sft_key_Escape))
+        {
+            sft_window_close(window);
+            window = NULL;
+        }
+
+        sft_window_drawImage(window, screen, 
             0, 0, screen->width, screen->height, 0, 0);
 
-        sft_image_drawRect(window->frameBuf, 
-            sft_input_mousePos(window).x - 50, 
+        sft_window_drawRect(window, 
+            sft_input_mousePos(window).x - 50,
             sft_input_mousePos(window).y - 50, 
             100, 100, 0);
 
