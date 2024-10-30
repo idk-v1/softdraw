@@ -1,4 +1,18 @@
-#include "softdraw/softdraw.h"
+#include <softdraw/softdraw.h>
+
+/*
+    This program hides what you are actually doing from the screen,
+    except for a small window.
+
+    This waits 3 seconds, then takes a screenshot.
+
+    A fullscreen window that cannot be interacted with opens
+
+    This draws the screenshot to the window, 
+    then draws a transparent rectangle where the mouse is.
+
+    Pressing escape closes the program
+*/
 
 int main()
 {
@@ -8,8 +22,10 @@ int main()
     sft_image* screen = sft_image_create(0, 0);
     sft_screenshot(screen);
 
-    sft_window* window = sft_window_open("softdraw", 800, 500, -1, -1, 
+    sft_window* window = sft_window_open("softdraw", 800, 500, -1, -1,
         sft_flag_darkmode | sft_flag_fullscreen | sft_flag_topmost | sft_flag_passthru);
+    if (!window)
+        return 1;
     window->fpsLimit = 30;
 
     while (sft_window_update(window))
@@ -21,12 +37,12 @@ int main()
             window = NULL;
         }
 
-        sft_window_drawImage(window, screen, 
+        sft_window_drawImage(window, screen,
             0, 0, screen->width, screen->height, 0, 0);
 
-        sft_window_drawRect(window, 
+        sft_window_drawRect(window,
             sft_input_mousePos(window).x - 50,
-            sft_input_mousePos(window).y - 50, 
+            sft_input_mousePos(window).y - 50,
             100, 100, 0);
 
         sft_window_display(window);

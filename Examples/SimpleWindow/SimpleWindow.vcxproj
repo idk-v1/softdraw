@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{053248c1-1ca3-4ca2-8d77-51e44a74c908}</ProjectGuid>
-    <RootNamespace>softdraw</RootNamespace>
+    <ProjectGuid>{88c81ffa-7830-4087-837f-1c44ef5bbf28}</ProjectGuid>
+    <RootNamespace>SimpleWindow</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -76,8 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -92,8 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,8 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,8 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,22 +131,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="softdraw\input\input.c" />
-    <ClCompile Include="softdraw\image\image.c" />
-    <ClCompile Include="softdraw\input\win32_input.c" />
-    <ClCompile Include="softdraw\monitor\win32_monitor.c" />
-    <ClCompile Include="softdraw\timer\win32_timer.c" />
-    <ClCompile Include="softdraw\window\win32_window.c" />
-    <ClCompile Include="softdraw\window\window.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="softdraw\input\input.h" />
-    <ClInclude Include="softdraw\image\image.h" />
-    <ClInclude Include="softdraw\monitor\monitor.h" />
-    <ClInclude Include="softdraw\softdraw.h" />
-    <ClInclude Include="softdraw\window\window.h" />
-    <ClInclude Include="softdraw\util.h" />
-    <ClInclude Include="softdraw\timer\timer.h" />
+    <ClCompile Include="..\..\softdraw\image\image.c" />
+    <ClCompile Include="..\..\softdraw\input\input.c" />
+    <ClCompile Include="..\..\softdraw\input\win32_input.c" />
+    <ClCompile Include="..\..\softdraw\monitor\win32_monitor.c" />
+    <ClCompile Include="..\..\softdraw\timer\win32_timer.c" />
+    <ClCompile Include="..\..\softdraw\window\win32_window.c" />
+    <ClCompile Include="..\..\softdraw\window\window.c" />
+    <ClCompile Include="SimpleWindow.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
