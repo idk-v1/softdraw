@@ -36,6 +36,10 @@ int main()
             sft_window_close(window);
             window = NULL;
         }
+        if (sft_input_keyReleased(sft_key_Capslock))
+            sft_window_setFlag(window, sft_flag_hidden, 0);
+        if (sft_input_keyPressed(sft_key_Capslock))
+            sft_window_setFlag(window, 0, sft_flag_hidden);
 
         sft_window_drawImage(window, screen,
             0, 0, screen->width, screen->height, 0, 0);

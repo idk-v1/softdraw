@@ -194,6 +194,9 @@ void sft_window_setFlag(sft_window* window, sft_flags enable, sft_flags disable)
     else
         SetWindowPos(window->handle, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
 
+    if (window->flags & sft_flag_hidden)
+        ShowWindow(window->handle, SW_HIDE);
+
     InvalidateRect(window->handle, NULL, true);
 }
 
