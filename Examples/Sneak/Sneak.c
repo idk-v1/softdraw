@@ -23,7 +23,7 @@ int main()
     sft_screenshot(screen);
 
     sft_window* window = sft_window_open("softdraw", 800, 500, -1, -1,
-        sft_flag_darkmode | sft_flag_fullscreen | sft_flag_topmost | sft_flag_passthru);
+        sft_flag_darkmode | sft_flag_fullscreen | sft_flag_topmost | sft_flag_passthru | sft_flag_syshide);
     if (!window)
         return 1;
     window->fpsLimit = 30;
