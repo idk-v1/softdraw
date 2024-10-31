@@ -21,7 +21,7 @@ int main()
 
 	while (sft_window_update(window))
 	{
-		sft_input_updateKeys();
+		sft_input_updateInput();
 
 		if (sft_timer_msPassed(&lastTime, 1000 / 60))
 		{

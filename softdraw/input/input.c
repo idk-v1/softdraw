@@ -1,6 +1,8 @@
 #include "input.h"
 
 sft_key sft_input_keys[sft_key_Count];
+sft_key sft_input_clicks[sft_click_Count];
+sft_key sft_input_clicks[sft_click_Count];
 
 void sft_input_updateInput()
 {

@@ -16,7 +16,7 @@ extern "C" {
     void sft_init()
     {
         sft_window_init();
-        sft_input_updateKeys();
+        sft_input_updateInput();
     }
 
     /**
