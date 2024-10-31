@@ -19,7 +19,7 @@ sft_point sft_input_mousePos(const sft_window* window)
     return pt;
 }
 
-void _sft_input_updateKeys()
+void _sft_input_updateInput()
 {
     // Toggles
     sft_input_keys[sft_key_Capslock] |= GetKeyState(VK_CAPITAL) & 1; // Return state instead of pressed
@@ -55,6 +55,8 @@ void _sft_input_updateKeys()
     sft_input_keys[sft_key_System] |= GetAsyncKeyState(VK_LWIN) | GetAsyncKeyState(VK_RWIN) >> 15;
     sft_input_keys[sft_key_Escape] |= GetAsyncKeyState(VK_ESCAPE) >> 15;
     sft_input_keys[sft_key_BackSp] |= GetAsyncKeyState(VK_BACK) >> 15;
+    sft_input_keys[sft_key_Tab] |= GetAsyncKeyState(VK_TAB) >> 15;
+    sft_input_keys[sft_key_Enter] |= GetAsyncKeyState(VK_RETURN) >> 15;
     sft_input_keys[sft_key_Delete] |= GetAsyncKeyState(VK_DELETE) >> 15;
     sft_input_keys[sft_key_End] |= GetAsyncKeyState(VK_END) >> 15;
     sft_input_keys[sft_key_Home] |= GetAsyncKeyState(VK_HOME) >> 15;
@@ -81,4 +83,10 @@ void _sft_input_updateKeys()
     sft_input_keys[sft_key_RBracket] |= GetAsyncKeyState(VK_OEM_6) >> 15;
     sft_input_keys[sft_key_Grave] |= GetAsyncKeyState(VK_OEM_3) >> 15;
 
+    // Mouse clicks
+    sft_input_clicks[sft_click_Left] = GetAsyncKeyState(VK_LBUTTON) >> 15;
+    sft_input_clicks[sft_click_Right] = GetAsyncKeyState(VK_RBUTTON) >> 15;
+    sft_input_clicks[sft_click_Middle] = GetAsyncKeyState(VK_MBUTTON) >> 15;
+    sft_input_clicks[sft_click_Extra1] = GetAsyncKeyState(VK_XBUTTON1) >> 15;
+    sft_input_clicks[sft_click_Extra2] = GetAsyncKeyState(VK_XBUTTON2) >> 15;
 }

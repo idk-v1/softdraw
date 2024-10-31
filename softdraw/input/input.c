@@ -2,14 +2,19 @@
 
 sft_key sft_input_keys[sft_key_Count];
 
-void sft_input_updateKeys()
+void sft_input_updateInput()
 {
 	for (sft_key i = 0; i < sft_key_Count; i++)
 	{
 		sft_input_keys[i] &= 1;
 		sft_input_keys[i] <<= 1;
 	}
-	_sft_input_updateKeys();
+	for (sft_key i = 0; i < sft_click_Count; i++)
+	{
+		sft_input_clicks[i] &= 1;
+		sft_input_clicks[i] <<= 1;
+	}
+	_sft_input_updateInput();
 }
 
 bool sft_input_keyState(sft_key key)
@@ -30,4 +35,25 @@ bool sft_input_keyPressed(sft_key key)
 bool sft_input_keyLast(sft_key key)
 {
 	return (sft_input_keys[key] >> 1) & 1;
+}
+
+
+bool sft_input_clickState(sft_key button)
+{
+	return sft_input_clicks[button] & 1;
+}
+
+bool sft_input_clickReleased(sft_key button)
+{
+	return !sft_input_clickState(button) && sft_input_clickLast(button);
+}
+
+bool sft_input_clickPressed(sft_key button)
+{
+	return sft_input_clickState(button) && !sft_input_clickLast(button);
+}
+
+bool sft_input_clickLast(sft_key button)
+{
+	return (sft_input_clicks[button] >> 1) & 1;
 }

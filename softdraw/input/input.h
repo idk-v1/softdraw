@@ -26,7 +26,9 @@ enum
 	sft_key_Alt,
 	sft_key_System,
 	sft_key_Escape,
-	sft_key_BackSp,
+	sft_key_BackSp = '\b',
+	sft_key_Tab = '\t',
+	sft_key_Enter = '\n',
 	sft_key_Delete,
 	sft_key_End,
 	sft_key_Home,
@@ -39,18 +41,16 @@ enum
 	sft_key_Left,
 	sft_key_Right,
 
-	sft_key_Fn1,
-	sft_key_Fn2,
-	sft_key_Fn3,
-	sft_key_Fn4,
-	sft_key_Fn5,
-	sft_key_Fn6,
-	sft_key_Fn7,
-	sft_key_Fn8,
-	sft_key_Fn9,
-	sft_key_Fn10,
-	sft_key_Fn11,
-	sft_key_Fn12,
+	sft_key_Num0,
+	sft_key_Num1,
+	sft_key_Num2,
+	sft_key_Num3,
+	sft_key_Num4,
+	sft_key_Num5,
+	sft_key_Num6,
+	sft_key_Num7,
+	sft_key_Num8,
+	sft_key_Num9,
 
 	sft_key_0 = '0',
 	sft_key_1 = '1',
@@ -110,16 +110,18 @@ enum
 	sft_key_NumEnter,
 	sft_key_NumPeriod,
 
-	sft_key_Num0,
-	sft_key_Num1,
-	sft_key_Num2,
-	sft_key_Num3,
-	sft_key_Num4,
-	sft_key_Num5,
-	sft_key_Num6,
-	sft_key_Num7,
-	sft_key_Num8,
-	sft_key_Num9,
+	sft_key_Fn1,
+	sft_key_Fn2,
+	sft_key_Fn3,
+	sft_key_Fn4,
+	sft_key_Fn5,
+	sft_key_Fn6,
+	sft_key_Fn7,
+	sft_key_Fn8,
+	sft_key_Fn9,
+	sft_key_Fn10,
+	sft_key_Fn11,
+	sft_key_Fn12,
 
 	sft_key_Count, // Some spaces were skipped, but this is easier
 };
@@ -130,13 +132,14 @@ enum
 extern sft_key sft_input_keys[sft_key_Count];
 
 /**
-* \brief Gets the new state of the keyboard and replaces the last state
+* \brief Gets the new state of the keyboard and mouse and replaces the last state
 */
-void sft_input_updateKeys();
+void sft_input_updateInput();
 /**
-* \brief Internal function to gets the new state of the keyboard
+* \brief Internal function to gets the new state of the keyboard and mouse
 */
-void _sft_input_updateKeys();
+void _sft_input_updateInput();
+
 
 /**
 * \brief Gets the current state of the key
@@ -158,6 +161,46 @@ bool sft_input_keyReleased(sft_key key);
 * \param key The key to get
 */
 bool sft_input_keyPressed(sft_key key);
+
+
+
+enum
+{
+	sft_click_Null = 0,
+	sft_click_Left,
+	sft_click_Right,
+	sft_click_Middle,
+	sft_click_Extra1,
+	sft_click_Extra2,
+
+	sft_click_Count
+};
+
+/**
+* \brief Internal mouse state, perfectly fine to read this
+*/
+extern sft_key sft_input_clicks[sft_click_Count];
+
+/**
+* \brief Gets the current state of the mouse button
+* \param button The button to get
+*/
+bool sft_input_clickState(sft_key button);
+/**
+* \brief Gets the last state of the mouse button
+* \param button The button to get
+*/
+bool sft_input_clickLast(sft_key button);
+/**
+* \brief Returns true if the mouse button was just released
+* \param button The button to get
+*/
+bool sft_input_clickReleased(sft_key button);
+/**
+* \brief Returns true if the mouse button was just pressed
+* \param button The button to get
+*/
+bool sft_input_clickPressed(sft_key button);
 
 #ifdef __cplusplus
 }
