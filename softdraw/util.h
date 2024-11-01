@@ -13,6 +13,9 @@ extern "C" {
 
 #define sft_setFlag(flags, flag, val) if (val) (flags) |= (flag); else (flags) &= ~(flag);
 
+#define sft_getBit(var, bit) (((var) >> (bit)) & 1)
+#define sft_setBit(var, bit, state) if (state) (var) |= (1 << bit); else (state) &= ~(1 << bit);
+
 typedef struct
 {
     uint32_t w;

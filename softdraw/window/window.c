@@ -136,3 +136,19 @@ void sft_window_fill(sft_window* window, sft_color color)
 
     sft_image_fill(window->frameBuf, color);
 }
+
+void sft_window_drawText(sft_window* window, const char* text, int32_t x, int32_t y, uint32_t fontSize, sft_color color)
+{
+    if (!window)
+        return;
+
+    sft_image_drawText(window->frameBuf, text, x, y, fontSize, color);
+}
+
+void sft_window_drawChar(sft_window* window, char ch, int32_t x, int32_t y, uint32_t fontSize, sft_color color)
+{
+    if (!window)
+        return;
+
+    sft_image_drawChar(window->frameBuf, ch, x, y, fontSize, color);
+}

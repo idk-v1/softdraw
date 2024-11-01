@@ -233,6 +233,31 @@ void sft_window_drawRect(sft_window* dest,
 */
 void sft_window_fill(sft_window* window, sft_color color);
 
+/**
+* \brief Draws a string to a window
+* \param window The window to draw to
+* \param text The string to draw
+* \param x The leftmost position
+* \param y the topmost position
+* \param fontSize The font size
+* \param color The color of the text
+*/
+void sft_window_drawText(sft_window* window, const char* text,
+    int32_t x, int32_t y, uint32_t fontSize, sft_color color);
+
+/**
+* \brief Mostly for internal use, but could be useful.
+Draws a character to a window
+* \param window The window to draw to
+* \param ch The character to draw
+* \param x The leftmost position
+* \param y the topmost position
+* \param fontSize The font size
+* \param color The color of the text
+*/
+void sft_window_drawChar(sft_window* window, char ch,
+    int32_t x, int32_t y, uint32_t fontSize, sft_color color);
+
 #ifdef __cplusplus
 }
 #endif
