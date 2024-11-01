@@ -1,4 +1,4 @@
-#include <softdraw/softdraw.h>
+#include "softdraw/softdraw.h"
 
 int main()
 {
@@ -9,11 +9,19 @@ int main()
 		return 1;
 
 	sft_window_fill(window, 0xFF000000);
-	sft_window_drawText(window, "ABCDEFGHIJKL\nMNOPQRSTUVWX\nYZabcdefghij\nklmnopqrstuv\nwxyz\n1\t423\t5", 20, 20, 5, 0xFFFFFFFF);
 	sft_window_display(window);
 
 	while (sft_window_update(window))
 	{
+		sft_input_update();
+
+		if (sft_input_typedChar())
+		{
+			sft_window_fill(window, 0xFF000000);
+			sft_window_drawChar(window, sft_input_typedChar(), 20, 20, 5, 0xFFFF0000);
+			sft_window_display(window);
+		}
+
 		sft_sleep(10);
 	}
 

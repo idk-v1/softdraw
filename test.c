@@ -10,6 +10,8 @@ int main()
 
 	while (sft_window_update(window))
 	{
+		sft_input_update();
+
 		sft_sleep(10);
 	}
 

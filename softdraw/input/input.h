@@ -52,6 +52,13 @@ enum
 	sft_key_Num8,
 	sft_key_Num9,
 
+	sft_key_Space = ' ',
+	sft_key_Apostr = '\'',
+	sft_key_Comma = ',',
+	sft_key_Minus = '-',
+	sft_key_Period = '.',
+	sft_key_FSlash = '/',
+
 	sft_key_0 = '0',
 	sft_key_1 = '1',
 	sft_key_2 = '2',
@@ -62,6 +69,9 @@ enum
 	sft_key_7 = '7',
 	sft_key_8 = '8',
 	sft_key_9 = '9',
+
+	sft_key_Semicolon = ';',
+	sft_key_Equal = '=',
 
 	sft_key_A = 'A',
 	sft_key_B = 'B',
@@ -90,14 +100,6 @@ enum
 	sft_key_Y = 'Y',
 	sft_key_Z = 'Z',
 
-	sft_key_Space = ' ',
-	sft_key_Apostr = '\'',
-	sft_key_Comma = ',',
-	sft_key_Minus = '-',
-	sft_key_Period = '.',
-	sft_key_FSlash = '/',
-	sft_key_Equal = '=',
-	sft_key_Semicolon = ';',
 	sft_key_LBracket = '[',
 	sft_key_BSlash = '\\',
 	sft_key_RBracket = ']',
@@ -132,13 +134,23 @@ enum
 extern sft_key sft_input_keys[sft_key_Count];
 
 /**
+* \brief Internal last pressed state, perfectly fine to read this
+*/
+extern sft_key sft_input_typed;
+
+/**
+* \brief Returns a printable char from the keys and most recent typed key
+*/
+char sft_input_typedChar();
+
+/**
 * \brief Gets the new state of the keyboard and mouse and replaces the last state
 */
-void sft_input_updateInput();
+void sft_input_update();
 /**
 * \brief Internal function to gets the new state of the keyboard and mouse
 */
-void _sft_input_updateInput();
+void _sft_input_update();
 
 
 /**

@@ -1,10 +1,68 @@
 #include "input.h"
 
-sft_key sft_input_keys[sft_key_Count];
-sft_key sft_input_clicks[sft_click_Count];
-sft_key sft_input_clicks[sft_click_Count];
+sft_key sft_input_keys[sft_key_Count] = { 0 };
+sft_key sft_input_clicks[sft_click_Count] = { 0 };
 
-void sft_input_updateInput()
+sft_key sft_input_typed = 0;
+
+char sft_input_typedChar()
+{
+	bool shift = sft_input_keyState(sft_key_Shift);
+	bool caps = sft_input_keyState(sft_key_Capslock);
+
+	// Lower / upper case
+	if (sft_input_typed >= 'A' && sft_input_typed <= 'Z')
+		return sft_input_typed + (32 * ((!shift) ^ caps));
+
+	if (sft_input_typed >= sft_key_Num0 && sft_input_typed <= sft_key_Num9)
+		return sft_input_typed - sft_key_Num0 + '0';
+
+	switch (sft_input_typed)
+	{
+		// Numbers
+	case '0': return shift ? ')' : '0';
+	case '1': return shift ? '!' : '1';
+	case '2': return shift ? '@' : '2';
+	case '3': return shift ? '#' : '3';
+	case '4': return shift ? '$' : '4';
+	case '5': return shift ? '%' : '5';
+	case '6': return shift ? '^' : '6';
+	case '7': return shift ? '&' : '7';
+	case '8': return shift ? '*' : '8';
+	case '9': return shift ? '(' : '9';
+
+		// Symbols
+	case '`': return shift ? '~' : '`';
+	case '-': return shift ? '_' : '-';
+	case '=': return shift ? '+' : '=';
+	case '[': return shift ? '{' : '[';
+	case ']': return shift ? '}' : ']';
+	case '\\':return shift ? '|' : '\\';
+	case ';': return shift ? ':' : ';';
+	case '\'':return shift ? '"' : '\'';
+	case ',': return shift ? '<' : ',';
+	case '.': return shift ? '>' : '.';
+	case '/': return shift ? '?' : '/';
+
+		// Numpad
+	case sft_key_NumDiv: return '/';
+	case sft_key_NumMult: return '*';
+	case sft_key_NumSub: return '-';
+	case sft_key_NumAdd: return '+';
+	case sft_key_NumEnter: return '\n';
+	case sft_key_NumPeriod: return '.';
+
+		// No change
+	case ' ':
+	case '\t':
+	case '\n':
+		return sft_input_typed;
+	}
+
+	return 0;
+}
+
+void sft_input_update()
 {
 	for (sft_key i = 0; i < sft_key_Count; i++)
 	{
@@ -16,7 +74,15 @@ void sft_input_updateInput()
 		sft_input_clicks[i] &= 1;
 		sft_input_clicks[i] <<= 1;
 	}
-	_sft_input_updateInput();
+	_sft_input_update();
+
+	for (sft_key i = sft_key_Control; i < sft_key_Count; i++)
+	{
+		if (sft_input_keyPressed(i))
+			sft_input_typed = i;
+		else if (sft_input_typed == i)
+			sft_input_typed = 0;
+	}
 }
 
 bool sft_input_keyState(sft_key key)
