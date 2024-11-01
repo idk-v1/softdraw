@@ -116,7 +116,7 @@ void sft_image_drawText(sft_image* dest, const char* text, int32_t x, int32_t y,
             break;
 
         case '\t':
-            cols += 2;
+            cols += 4 - cols % 4;
             break;
             
         default:

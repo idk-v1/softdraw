@@ -9,7 +9,7 @@ int main()
 		return 1;
 
 	sft_window_fill(window, 0xFF000000);
-	sft_window_drawText(window, "ABCDEFGHIJKL\nMNOPQRSTUVWX\nYZabcdefghij\nklmnopqrstuv\nwxyz", 20, 20, 5, 0xFFFFFFFF);
+	sft_window_drawText(window, "ABCDEFGHIJKL\nMNOPQRSTUVWX\nYZabcdefghij\nklmnopqrstuv\nwxyz\n1\t423\t5", 20, 20, 5, 0xFFFFFFFF);
 	sft_window_display(window);
 
 	while (sft_window_update(window))
