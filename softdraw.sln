@@ -7,9 +7,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "softdraw", "softdraw.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sneak", "examples\Sneak\Sneak.vcxproj", "{8AFA0914-ADAE-4035-97D9-9028BB36FAC2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleWindow", "Examples\SimpleWindow\SimpleWindow.vcxproj", "{88C81FFA-7830-4087-837F-1C44EF5BBF28}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleWindow", "examples\SimpleWindow\SimpleWindow.vcxproj", "{88C81FFA-7830-4087-837F-1C44EF5BBF28}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Moving", "Examples\Moving\Moving.vcxproj", "{E6F02719-5F3E-49CA-9547-59CE761ED206}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Moving", "examples\Moving\Moving.vcxproj", "{E6F02719-5F3E-49CA-9547-59CE761ED206}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Text", "examples\Text\Text.vcxproj", "{0240643C-B43E-4202-9E47-6854F5EE09ED}"
 EndProject
