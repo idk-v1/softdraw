@@ -209,6 +209,8 @@ void sft_window_init()
     wc.lpfnWndProc = wndProc;
     wc.hCursor = LoadCursorA(NULL, MAKEINTRESOURCEA(32512));
     RegisterClassA(&wc);
+
+    SetProcessDPIAware();
 }
 
 void sft_window_shutdown()
