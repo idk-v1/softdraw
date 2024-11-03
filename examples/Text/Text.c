@@ -8,6 +8,8 @@ int main()
 	if (!window)
 		return 1;
 
+	uint64_t lastTime = sft_timer_now();
+
 	sft_window_fill(window, 0xFF000000);
 	sft_window_display(window);
 
@@ -22,7 +24,7 @@ int main()
 			sft_window_display(window);
 		}
 
-		sft_sleep(10);
+		sft_timer_msWait(&lastTime, 10);
 	}
 
 	sft_shutdown();

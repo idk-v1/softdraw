@@ -8,7 +8,7 @@ int main()
 	if (!window)
 		return 1;
 
-	uint64_t lastTime = 0;
+	uint64_t lastTime = sft_timer_now();
 
 	window->fpsLimit = 60;
 
@@ -23,7 +23,7 @@ int main()
 	{
 		sft_input_update();
 
-		if (sft_timer_msPassed(&lastTime, 1000 / 60))
+		while (sft_timer_msDelta(&lastTime, 1000 / 60))
 		{
 			point.x += speed * (sft_input_keyState('D') - sft_input_keyState('A'));
 			point.y += speed * (sft_input_keyState('S') - sft_input_keyState('W'));

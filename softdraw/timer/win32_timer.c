@@ -13,7 +13,7 @@ uint64_t sft_timer_now()
     QueryPerformanceFrequency(&freq);
     QueryPerformanceCounter(&time);
 
-    return (1'000'000ull * time / freq);
+    return (sft_toNANOSEC(time * 1000) / freq);
 }
 
 void sft_sleep(uint32_t ms)
