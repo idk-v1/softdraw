@@ -27,9 +27,6 @@
     <ClCompile Include="softdraw\input\win32_input.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="softdraw\monitor\win32_monitor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="softdraw\window\window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,9 +57,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="softdraw\input\input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="softdraw\monitor\monitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

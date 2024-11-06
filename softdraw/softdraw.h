@@ -7,7 +7,6 @@ extern "C" {
 #include "image/image.h"
 #include "input/input.h"
 #include "timer/timer.h"
-#include "monitor/monitor.h"
 #include "util.h"
 
     /**

@@ -8,7 +8,6 @@ extern "C" {
 
 #include "../image/image.h"
 #include "../timer/timer.h"
-#include "../monitor/monitor.h"
 #include "../util.h"
 
 #define enumBit 1 << 
@@ -257,6 +256,26 @@ Draws a character to a window
 */
 void sft_window_drawChar(sft_window* window, char ch,
     int32_t x, int32_t y, uint32_t fontSize, sft_color color);
+
+/**
+* \brief Returns the primary monitor width
+*/
+uint32_t sft_screenWidth();
+
+/**
+* \brief Returns the primary monitor height
+*/
+uint32_t sft_screenHeight();
+
+/**
+* \brief Captures the entire screen
+* \param image [out] Returns a screenshot
+*
+* Uses a parameter rather than returning an image, because of reusing existing memory.
+* This is probably only needed for screen recording, not a single screenshot.
+* This was also tested on a 2012 laptop, but it was significantly faster
+*/
+void sft_screenshot(sft_image* image);
 
 #ifdef __cplusplus
 }
