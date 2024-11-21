@@ -58,6 +58,16 @@ void sft_image_drawImage(sft_image* dest, const sft_image* src,
     if (!dest || !src || !dest->pixels || !src->pixels)
         return;
 
+    if (destX < 0)
+    {
+        srcX -= destX;
+        destX = 0;
+    }
+    if (destY < 0)
+    {
+        srcY -= destY;
+        destY = 0;
+    }
     _sft_image_adjustRect(&srcX, &srcY, &srcW, &srcH, src->width, src->height);
     _sft_image_adjustRect(&destX, &destY, &srcW, &srcH, dest->width, dest->height);
 
