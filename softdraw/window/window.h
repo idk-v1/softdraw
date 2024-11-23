@@ -158,6 +158,19 @@ void sft_window_display(sft_window* window);
 void _sft_window_display(sft_window* window);
 
 /**
+* \brief Changes the window title
+* \param window the window of the title to change
+* \param title the string of the new title
+*/
+void sft_window_setTitle(sft_window* window, const char* title);
+
+/**
+* \brief Internal function to change the window title
+* \param window the window of the title to change
+*/
+void _sft_window_setTitle(sft_window* window);
+
+/**
 * \brief Frees window memory and closes the window
 * \param window The window to close
 */

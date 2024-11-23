@@ -100,6 +100,27 @@ bool sft_window_update(sft_window* window)
     return ~window->flags & sft_flag_closed;
 }
 
+void sft_window_setTitle(sft_window* window, const char* title)
+{
+    if (!window)
+        return;
+
+    void* ptr = realloc(window->title, strlen(title) + 1);
+    if (ptr)
+    {
+        window->title = ptr;
+        window->titleLen = strlen(title);
+        memcpy_s(window->title, window->titleLen, title, window->titleLen);
+        _sft_window_setTitle(window);
+    }
+    else
+    {
+        free(window->title);
+        window->title = NULL;
+        window->titleLen = 0;
+    }
+}
+
 void sft_window_close(sft_window* window)
 {
     if (!window)

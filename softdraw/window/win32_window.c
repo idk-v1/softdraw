@@ -155,6 +155,14 @@ void _sft_window_display(sft_window* window)
     ReleaseDC(window->handle, hdc);
 }
 
+void _sft_window_setTitle(sft_window* window)
+{
+    if (!window)
+        return;
+
+    SetWindowTextA(window->handle, window->title);
+}
+
 void _sft_window_close(sft_window* window)
 {
     if (!window)
