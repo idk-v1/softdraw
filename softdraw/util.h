@@ -4,6 +4,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include <stdlib.h>
 
 #define sft_min(a, b) ((a) < (b) ? (a) : (b))
 #define sft_max(a, b) ((a) > (b) ? (a) : (b))
@@ -35,6 +36,23 @@ typedef struct
     uint32_t w;
     uint32_t h;
 } sft_rect;
+
+static char* sft_strf(const char* fmt, ...)
+{
+	va_list args1, args2;
+	va_start(args1, fmt);
+	va_copy(args2, args1);
+
+	uint64_t size = vsnprintf(NULL, 0, fmt, args1);
+
+	char* buf = malloc(size + 1);
+	if (buf)
+		vsnprintf(buf, size + 1, fmt, args2);
+
+	va_end(args1);
+	va_end(args2);
+	return buf;
+}
 
 #ifdef __cplusplus
 }

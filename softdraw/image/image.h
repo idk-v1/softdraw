@@ -5,6 +5,9 @@ extern "C" {
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdarg.h>
+#include <stdio.h>
+
 #include "../util.h"
 
 typedef uint32_t sft_color;
@@ -215,6 +218,19 @@ inline void _sft_image_adjustRect(int32_t* x, int32_t* y, uint32_t* w, uint32_t*
 */
 void sft_image_drawText(sft_image* dest, const char* text,
     int32_t x, int32_t y, uint32_t fontSize, sft_color color);
+
+/**
+* \brief Draws a string to an image
+* \param dest The image to draw to
+* \param x The leftmost position
+* \param y the topmost position
+* \param fontSize The font size
+* \param color The color of the text
+* \param fmt formatted string
+*/
+void sft_image_drawTextF(sft_image* dest, int32_t x, int32_t y, 
+    uint32_t fontSize, sft_color color, const char* fmt, ...);
+
 
 /**
 * \brief Mostly for internal use, but could be useful. 

@@ -15,9 +15,12 @@ int main()
 	{
 		sft_input_update();
 
-		char buf[10] = { 0 };
-		_itoa_s(c++, buf, sizeof(buf), 10);
-		sft_window_setTitle(window, buf);
+		char* buf = sft_strf("%9d", c++);
+		if (buf)
+		{
+			sft_window_setTitle(window, buf);
+			free(buf);
+		}
 
 		sft_sleep(10);
 	}

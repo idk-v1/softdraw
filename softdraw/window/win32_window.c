@@ -45,13 +45,13 @@ void flagsToWin32Style(sft_flags flags, uint32_t* style, uint32_t* styleEx)
     sft_setFlag(*style, WS_VISIBLE, 
         !(flags & sft_flag_hidden));
 
-    sft_setFlag(*style, WS_THICKFRAME | WS_MAXIMIZEBOX, 
-        !(flags & sft_flag_noresize));
-
     sft_setFlag(*style, WS_CAPTION | WS_SYSMENU | WS_THICKFRAME,
         !(flags & sft_flag_borderless));
     sft_setFlag(*style, WS_POPUP,
         (flags & sft_flag_borderless));
+
+    sft_setFlag(*style, WS_THICKFRAME | WS_MAXIMIZEBOX,
+        !(flags & sft_flag_noresize));
 
     sft_setFlag(*style, WS_MAXIMIZE,
         (flags & sft_flag_maximized));

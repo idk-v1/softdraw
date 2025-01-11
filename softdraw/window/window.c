@@ -1,5 +1,4 @@
 #include "window.h"
-#include <malloc.h>
 #include <string.h>
 
 void sft_window_defOnClose(sft_window* window)
@@ -49,11 +48,11 @@ sft_window* sft_window_open(const char* title, uint32_t width, uint32_t height, 
 
         window->flags = flags;
 
-        window->titleLen = 0;
-        window->titleLen = strlen(title);
-        window->title = malloc(window->titleLen + 1ull);
+        uint64_t titleLen = strlen(title);
+
+        window->title = malloc(titleLen + 1);
         if (window->title)
-            memcpy(window->title, title, window->titleLen + 1ull);
+            memcpy(window->title, title, titleLen + 1);
 
         if (window->flags & sft_flag_fullscreen)
         {
@@ -105,19 +104,20 @@ void sft_window_setTitle(sft_window* window, const char* title)
     if (!window)
         return;
 
-    void* ptr = realloc(window->title, strlen(title) + 1);
+    uint64_t titleLen = strlen(title);
+
+    void* ptr = realloc(window->title, titleLen + 1);
     if (ptr)
     {
         window->title = ptr;
-        window->titleLen = strlen(title);
-        memcpy_s(window->title, window->titleLen, title, window->titleLen);
+        memcpy(window->title, title, titleLen + 1);
         _sft_window_setTitle(window);
     }
     else
     {
-        free(window->title);
+        if (window->title)
+            free(window->title);
         window->title = NULL;
-        window->titleLen = 0;
     }
 }
 
@@ -164,6 +164,32 @@ void sft_window_drawText(sft_window* window, const char* text, int32_t x, int32_
         return;
 
     sft_image_drawText(window->frameBuf, text, x, y, fontSize, color);
+}
+
+void sft_window_drawTextF(sft_window* window, int32_t x, int32_t y, uint32_t fontSize, sft_color color, const char* fmt, ...)
+{
+    if (!window)
+        return;
+
+    va_list args1, args2;
+    va_start(args1, fmt);
+    va_copy(args2, args1);
+
+    uint64_t size = vsnprintf(NULL, 0, fmt, args1);
+
+    char* buf = malloc(size + 1);
+    if (buf)
+        vsnprintf(buf, size + 1, fmt, args2);
+
+    va_end(args1);
+    va_end(args2);
+
+
+    if (buf)
+    {
+        sft_image_drawText(window->frameBuf, buf, x, y, fontSize, color);
+        free(buf);
+    }
 }
 
 void sft_window_drawChar(sft_window* window, char ch, int32_t x, int32_t y, uint32_t fontSize, sft_color color)

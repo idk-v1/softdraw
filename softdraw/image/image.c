@@ -1,7 +1,5 @@
 #include "image.h"
 
-#include <malloc.h>
-
 sft_image* sft_image_create(uint32_t width, uint32_t height)
 {
     sft_image* image = malloc(sizeof(sft_image));
@@ -26,7 +24,7 @@ void sft_image_resize(sft_image* image, uint32_t width, uint32_t height)
     {
         if (image->pixels)
             free(image->pixels);
-        image->pixels = malloc(width * height * sizeof(sft_color));
+        image->pixels = malloc((uint64_t)width * height * sizeof(sft_color));
     }
     image->width = width;
     image->height = height;
@@ -37,7 +35,7 @@ void sft_image_fill(sft_image* image, sft_color color)
     if (!image || !image->pixels)
         return;
 
-    for (uint64_t i = 0; i < image->width * image->height; i++)
+    for (uint64_t i = 0; i < (uint64_t)image->width * image->height; i++)
         image->pixels[i] = color;
 }
 
@@ -102,9 +100,9 @@ void _sft_image_adjustRect(int32_t* x, int32_t* y, uint32_t* w, uint32_t* h,
         *h -= sft_min(sft_abs(*y), *h);
         *y = 0;
     }
-    if (*x + *w >= width)
+    if ((uint64_t)*x + *w >= width)
         *w = width - sft_min(*x, width);
-    if (*y + *h >= height)
+    if ((uint64_t)*y + *h >= height)
         *h = height - sft_min(*y, height);
 }
 
@@ -134,6 +132,29 @@ void sft_image_drawText(sft_image* dest, const char* text, int32_t x, int32_t y,
             sft_image_drawChar(dest, text[i], x + cols * fontSize * 8, y + rows * fontSize * 8, fontSize, color);
             cols++;
         }
+    }
+}
+
+void sft_image_drawTextF(sft_image* dest, int32_t x, int32_t y, uint32_t fontSize, sft_color color, const char* fmt, ...)
+{
+    va_list args1, args2;
+    va_start(args1, fmt);
+    va_copy(args2, args1);
+
+    uint64_t size = vsnprintf(NULL, 0, fmt, args1);
+
+    char* buf = malloc(size + 1);
+    if (buf)
+        vsnprintf(buf, size + 1, fmt, args2);
+
+    va_end(args1);
+    va_end(args2);
+    
+
+    if (buf)
+    {
+        sft_image_drawText(dest, buf, x, y, fontSize, color);
+        free(buf);
     }
 }
 

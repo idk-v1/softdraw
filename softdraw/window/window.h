@@ -45,10 +45,6 @@ typedef struct sft_window
     * \brief Window title
     */
     char* title;
-    /**
-    * \brief Length of window title string
-    */
-    uint64_t titleLen;
 
     /**
     * \brief Internal framebuffer
@@ -256,6 +252,18 @@ void sft_window_fill(sft_window* window, sft_color color);
 */
 void sft_window_drawText(sft_window* window, const char* text,
     int32_t x, int32_t y, uint32_t fontSize, sft_color color);
+
+/**
+* \brief Draws a string to an image
+* \param window The window to draw to
+* \param x The leftmost position
+* \param y the topmost position
+* \param fontSize The font size
+* \param color The color of the text
+* \param fmt formatted string
+*/
+void sft_window_drawTextF(sft_window* window, int32_t x, int32_t y,
+    uint32_t fontSize, sft_color color, const char* fmt, ...);
 
 /**
 * \brief Mostly for internal use, but could be useful.
