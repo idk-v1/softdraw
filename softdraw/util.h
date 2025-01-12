@@ -5,6 +5,8 @@ extern "C" {
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 #define sft_min(a, b) ((a) < (b) ? (a) : (b))
 #define sft_max(a, b) ((a) > (b) ? (a) : (b))
