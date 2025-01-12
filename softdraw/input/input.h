@@ -13,7 +13,7 @@ extern "C" {
 */
 sft_point sft_input_mousePos(const sft_window* window);
 
-typedef uint8_t sft_key;
+typedef uint8_t sft_key, sft_click;
 
 enum
 {
@@ -191,28 +191,28 @@ enum
 /**
 * \brief Internal mouse state, perfectly fine to read this
 */
-extern sft_key sft_input_clicks[sft_click_Count];
+extern sft_click sft_input_clicks[sft_click_Count];
 
 /**
 * \brief Gets the current state of the mouse button
 * \param button The button to get
 */
-bool sft_input_clickState(sft_key button);
+bool sft_input_clickState(sft_click button);
 /**
 * \brief Gets the last state of the mouse button
 * \param button The button to get
 */
-bool sft_input_clickLast(sft_key button);
+bool sft_input_clickLast(sft_click button);
 /**
 * \brief Returns true if the mouse button was just released
 * \param button The button to get
 */
-bool sft_input_clickReleased(sft_key button);
+bool sft_input_clickReleased(sft_click button);
 /**
 * \brief Returns true if the mouse button was just pressed
 * \param button The button to get
 */
-bool sft_input_clickPressed(sft_key button);
+bool sft_input_clickPressed(sft_click button);
 
 #ifdef __cplusplus
 }

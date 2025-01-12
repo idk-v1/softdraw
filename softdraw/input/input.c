@@ -114,28 +114,28 @@ bool sft_input_keyLast(sft_key key)
 }
 
 
-bool sft_input_clickState(sft_key button)
+bool sft_input_clickState(sft_click button)
 {
 	if (button >= sft_click_Count)
 		return false;
 	return sft_input_clicks[button] & 1;
 }
 
-bool sft_input_clickReleased(sft_key button)
+bool sft_input_clickReleased(sft_click button)
 {
 	if (button >= sft_click_Count)
 		return false;
 	return !sft_input_clickState(button) && sft_input_clickLast(button);
 }
 
-bool sft_input_clickPressed(sft_key button)
+bool sft_input_clickPressed(sft_click button)
 {
 	if (button >= sft_click_Count)
 		return false;
 	return sft_input_clickState(button) && !sft_input_clickLast(button);
 }
 
-bool sft_input_clickLast(sft_key button)
+bool sft_input_clickLast(sft_click button)
 {
 	if (button >= sft_click_Count)
 		return false;
