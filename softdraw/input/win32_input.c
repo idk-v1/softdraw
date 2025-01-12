@@ -7,14 +7,13 @@
 
 sft_point sft_input_mousePos(const sft_window* window)
 {
-    sft_point pt;
-    GetCursorPos(&pt);
+    POINT point;
+    GetCursorPos(&point);
 
     if (window)
-    {
-        pt.x -= window->left;
-        pt.y -= window->top;
-    }
+        ScreenToClient(window->handle, &point);
+
+    sft_point pt = { .x = point.x, .y = point.y };
 
     return pt;
 }
