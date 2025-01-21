@@ -150,6 +150,14 @@ void sft_window_drawRect(sft_window* dest, int32_t x, int32_t y, uint32_t w, uin
     sft_image_drawRect(dest->frameBuf, x, y, w, h, color);
 }
 
+void sft_window_outlineRect(sft_window* dest, int32_t x, int32_t y, uint32_t w, uint32_t h, sft_color color)
+{
+    if (!dest)
+        return;
+
+    sft_image_outlineRect(dest->frameBuf, x, y, w, h, color);
+}
+
 void sft_window_fill(sft_window* window, sft_color color)
 {
     if (!window)

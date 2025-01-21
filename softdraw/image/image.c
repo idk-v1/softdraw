@@ -87,6 +87,45 @@ void sft_image_drawRect(sft_image* dest, int32_t x, int32_t y, uint32_t w, uint3
             dest->pixels[(xx + x) + (yy + y) * dest->width] = color;
 }
 
+void sft_image_outlineRect(sft_image* dest, int32_t x, int32_t y, uint32_t w, uint32_t h, sft_color color)
+{
+    if (!dest || !dest->pixels)
+        return;
+
+    int32_t xo = x, yo = y;
+    uint32_t wo = w, ho = h;
+
+    _sft_image_adjustRect(&x, &y, &w, &h, dest->width, dest->height);
+
+    if (w && h)
+    {
+        if (x == xo)
+        {
+            for (uint32_t i = y; i < y + h; i++)
+                dest->pixels[x + i * dest->width] = color;
+            if (w == wo)
+                for (uint32_t i = y; i < y + h; i++)
+                    dest->pixels[x + w - 1 + i * dest->width] = color;
+        }
+        else
+            for (uint32_t i = y; i < y + h; i++)
+                dest->pixels[x + w + i * dest->width] = color;
+
+        if (y == yo)
+        {
+            for (uint32_t i = x; i < x + w; i++)
+                dest->pixels[i + y * dest->width] = color;
+            if (h == ho)
+                for (uint32_t i = x; i < x + w; i++)
+                    dest->pixels[i + (y + h - 1) * dest->width] = color;
+        }
+        else
+            for (uint32_t i = x; i < x + w; i++)
+                dest->pixels[i + (y + h) * dest->width] = color;
+    }
+
+}
+
 void _sft_image_adjustRect(int32_t* x, int32_t* y, uint32_t* w, uint32_t* h, 
     uint64_t width, uint64_t height)
 {

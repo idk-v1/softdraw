@@ -196,6 +196,18 @@ void sft_image_drawRect(sft_image* dest,
     int32_t x, int32_t y, uint32_t w, uint32_t h, sft_color color);
 
 /**
+* \brief Outlines pixels in rectangle with a color
+* \param dest Destination image to draw to
+* \param x Leftmost position of rectangle
+* \param y Topmost positionof rectangle
+* \param w Width of rectangle
+* \param h Height of rectangle
+* \param color Color to outline rectangle with
+*/
+void sft_image_outlineRect(sft_image* dest,
+    int32_t x, int32_t y, uint32_t w, uint32_t h, sft_color color);
+
+/**
 * \brief Internal function used by draws. Crops rectangles to fit in destination images
 * \param x Leftmost position
 * \param y Topmost position

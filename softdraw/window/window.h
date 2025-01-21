@@ -235,6 +235,18 @@ void sft_window_drawRect(sft_window* dest,
     int32_t x, int32_t y, uint32_t w, uint32_t h, sft_color color);
 
 /**
+* \brief Outlines pixels in rectangle with a color
+* \param dest Destination window to draw to
+* \param x Leftmost position of rectangle
+* \param y Topmost positionof rectangle
+* \param w Width of rectangle
+* \param h Height of rectangle
+* \param color Color to outline rectangle with
+*/
+void sft_window_outlineRect(sft_window* dest,
+    int32_t x, int32_t y, uint32_t w, uint32_t h, sft_color color);
+
+/**
 * \brief Fills the entire window with a specified color
 * \param window Target image to be filled
 * \param color Color to fill window with
