@@ -109,6 +109,85 @@ typedef struct sft_window
 */
 void sft_window_setFlag(sft_window* window, sft_flags enable, sft_flags disable);
 
+
+/**
+* \brief Sets the window size
+* \param window The window to set size of
+* \param width The new width of the window
+* \param height The new height of the window
+*/
+void sft_window_setSize(sft_window* window, uint64_t width, uint64_t height);
+
+/**
+* \brief Internal function to set the window size
+* \param window The window to set size of
+* \param width The new width of the window
+* \param height The new height of the window
+*/
+void _sft_window_setSize(sft_window* window, uint64_t width, uint64_t height);
+
+/**
+* \brief Sets the window position
+* \param window The window to set position of
+* \param left The new x position of the window
+* \param top The new y position of the window
+*/
+void sft_window_setPos(sft_window* window, uint64_t left, uint64_t top);
+
+/**
+* \brief Internal function to set the window position
+* \param window The window to set position of
+* \param left The new x position of the window
+* \param top The new y position of the window
+*/
+void _sft_window_setPos(sft_window* window, uint64_t left, uint64_t top);
+
+
+/**
+* \brief Sets the window to show above all others
+* \param window The window to set topmost
+* \param value If the window should be topmost
+*/
+void sft_window_setTopmost(sft_window * window, bool value);
+
+/**
+* \brief Internal function to set the window to show above all others
+* \param window The window to set topmost
+* \param value If the window should be topmost
+*/
+void _sft_window_setTopmost(sft_window* window, bool value);
+
+
+/**
+* \brief Focuses window
+* \param window The window to set focus
+* \param value If the window should be topmost
+*/
+void sft_window_focus(sft_window* window);
+
+/**
+* \brief Internal function to focus window
+* \param window The window to set focus
+* \param value If the window should be topmost
+*/
+void _sft_window_focus(sft_window* window);
+
+
+/**
+* \brief Sets the window to be visible or hidden
+* \param window The window to show
+* \param value If the window should be shown
+*/
+void sft_window_setVisible(sft_window* window, bool value);
+
+/**
+* \brief Internal function to set the window to be visible or hidden
+* \param window The window to show
+* \param value If the window should be shown
+*/
+void _sft_window_setVisible(sft_window* window, bool value);
+
+
 /**
 * \brief Creates a window and returns a pointer to it
 * \param title Title of window

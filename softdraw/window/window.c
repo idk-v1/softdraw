@@ -34,6 +34,46 @@ void sft_window_display(sft_window* window)
 
 }
 
+void sft_window_setSize(sft_window* window, uint64_t width, uint64_t height)
+{
+    if (window)
+    {
+        _sft_window_setSize(window, width, height);
+        window->width = width;
+        window->height = height;
+
+        sft_image_resize(window->frameBuf, width, height);
+    }
+}
+
+void sft_window_setPos(sft_window* window, uint64_t left, uint64_t top)
+{
+    if (window)
+    {
+        _sft_window_setPos(window, left, top);
+        window->left = left;
+        window->top = top;
+    }
+}
+
+void sft_window_setTopmost(sft_window* window, bool value)
+{
+    if (window)
+        _sft_window_setTopmost(window, value);
+}
+
+void sft_window_focus(sft_window* window)
+{
+    if (window)
+        _sft_window_focus(window);
+}
+
+void sft_window_setVisible(sft_window* window, bool value)
+{
+    if (window)
+        _sft_window_setVisible(window, value);
+}
+
 sft_window* sft_window_open(const char* title, uint32_t width, uint32_t height, int32_t left, int32_t top, sft_flags flags)
 {
     // No idea why you would want this, 

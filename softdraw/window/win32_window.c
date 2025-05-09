@@ -163,6 +163,40 @@ void _sft_window_setTitle(sft_window* window)
     SetWindowTextA(window->handle, window->title);
 }
 
+void _sft_window_setSize(sft_window* window, uint64_t width, uint64_t height)
+{
+    if (window)
+        SetWindowPos(window->handle, NULL, 0, 0, width, height,
+            SWP_NOACTIVATE | SWP_NOZORDER | SWP_NOMOVE);
+}
+
+void _sft_window_setPos(sft_window* window, uint64_t left, uint64_t top)
+{
+    if (window)
+        SetWindowPos(window->handle, NULL, left, top, 0, 0,
+            SWP_NOACTIVATE | SWP_NOZORDER | SWP_NOSIZE);
+}
+
+void _sft_window_setTopmost(sft_window* window, bool value)
+{
+    if (window)
+        SetWindowPos(window->handle, (value ? HWND_TOPMOST : HWND_NOTOPMOST), 0, 0, 0, 0,
+            SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+}
+
+void _sft_window_focus(sft_window* window)
+{
+    if (window)
+        SetForegroundWindow(window->handle);
+}
+
+void _sft_window_setVisible(sft_window* window, bool value)
+{
+    if (window)
+        SetWindowPos(window->handle, NULL, 0, 0, 0, 0,
+            SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | (value ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
+}
+
 void _sft_window_close(sft_window* window)
 {
     if (!window)
