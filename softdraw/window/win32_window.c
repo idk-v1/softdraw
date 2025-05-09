@@ -113,6 +113,9 @@ bool _sft_window_open(sft_window* window, const char* title, uint32_t width, uin
         // Give window procedure the window pointer
         SetWindowLongPtrA(window->handle, GWLP_USERDATA, (LONG_PTR)window);
 
+        // Fix for borderless windows taking up the full screen
+        sft_window_setSize(window, width, height);
+
         return true;
     }
     return false;
