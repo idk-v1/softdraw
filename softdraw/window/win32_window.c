@@ -121,6 +121,11 @@ bool _sft_window_open(sft_window* window, const char* title, uint32_t width, uin
     return false;
 }
 
+bool _sft_window_hasFocus(const sft_window* window)
+{
+    return GetForegroundWindow() == window->handle;
+}
+
 void _sft_window_update(sft_window* window)
 {
     if (!window)

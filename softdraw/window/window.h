@@ -211,6 +211,18 @@ sft_window* sft_window_open(const char* title, uint32_t width, uint32_t height, 
 bool _sft_window_open(sft_window* window, const char* title, uint32_t width, uint32_t height, int32_t left, int32_t top, sft_flags flags);
 
 /**
+* \brief Gets if the window is focused
+* \param window The window to check if focused
+*/
+bool sft_window_hasFocus(const sft_window* window);
+
+/**
+* \brief Internal function to get if the window is focused
+* \param window The window to check if focused
+*/
+bool _sft_window_hasFocus(const sft_window* window);
+
+/**
 * \brief Gets event messages and returns if the window should be closed
 * \param window The window to be updated
 */

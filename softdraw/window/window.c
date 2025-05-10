@@ -139,6 +139,11 @@ bool sft_window_update(sft_window* window)
     return ~window->flags & sft_flag_closed;
 }
 
+bool sft_window_hasFocus(const sft_window* window)
+{
+    return _sft_window_hasFocus(window);
+}
+
 void sft_window_setTitle(sft_window* window, const char* title)
 {
     if (!window)
