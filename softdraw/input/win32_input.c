@@ -83,9 +83,9 @@ void _sft_input_update()
     sft_input_keys[sft_key_Grave] |= (uint16_t)GetAsyncKeyState(VK_OEM_3) >> 15;
 
     // Mouse clicks
-    sft_input_clicks[sft_click_Left] = (uint16_t)GetAsyncKeyState(VK_LBUTTON) >> 15;
-    sft_input_clicks[sft_click_Right] = (uint16_t)GetAsyncKeyState(VK_RBUTTON) >> 15;
-    sft_input_clicks[sft_click_Middle] = (uint16_t)GetAsyncKeyState(VK_MBUTTON) >> 15;
-    sft_input_clicks[sft_click_Extra1] = (uint16_t)GetAsyncKeyState(VK_XBUTTON1) >> 15;
-    sft_input_clicks[sft_click_Extra2] = (uint16_t)GetAsyncKeyState(VK_XBUTTON2) >> 15;
+    sft_input_clicks[sft_click_Left] |= (uint16_t)GetAsyncKeyState(VK_LBUTTON) >> 15;
+    sft_input_clicks[sft_click_Right] |= (uint16_t)GetAsyncKeyState(VK_RBUTTON) >> 15;
+    sft_input_clicks[sft_click_Middle] |= (uint16_t)GetAsyncKeyState(VK_MBUTTON) >> 15;
+    sft_input_clicks[sft_click_Extra1] |= (uint16_t)GetAsyncKeyState(VK_XBUTTON1) >> 15;
+    sft_input_clicks[sft_click_Extra2] |= (uint16_t)GetAsyncKeyState(VK_XBUTTON2) >> 15;
 }
