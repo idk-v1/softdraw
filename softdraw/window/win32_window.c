@@ -84,7 +84,7 @@ AdjustWindowRect(&winRect, flags, 0);
 
     window->handle = CreateWindowExA(
         styleEx, "softdraw", window->title, style,
-        window->left, window->top, winRecr->right, winRect->bottom,
+        window->left, window->top, winRect.right - winRect.left, winRect.bottom - winRect.top,
         NULL, NULL, GetModuleHandleA(NULL), NULL);
 
     if (window->handle)
