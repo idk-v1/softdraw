@@ -79,8 +79,8 @@ bool _sft_window_open(sft_window* window, const char* title, uint32_t width, uin
 
     flagsToWin32Style(flags, &style, &styleEx);
 				
-				RECT winRect = {0, 0, window->width, window->height};
-				AdjustWindowRect(&winRect, flags, 0);
+	RECT winRect = {0, 0, window->width, window->height};
+	AdjustWindowRect(&winRect, flags, 0);
 
     window->handle = CreateWindowExA(
         styleEx, "softdraw", window->title, style,
