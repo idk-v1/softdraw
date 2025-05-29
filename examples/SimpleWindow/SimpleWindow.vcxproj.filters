@@ -24,9 +24,6 @@
     <ClCompile Include="..\..\softdraw\input\win32_input.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\softdraw\monitor\win32_monitor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\softdraw\timer\win32_timer.c">
       <Filter>Source Files</Filter>
     </ClCompile>

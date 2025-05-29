@@ -196,7 +196,6 @@
     <ClCompile Include="..\..\softdraw\image\image.c" />
     <ClCompile Include="..\..\softdraw\input\input.c" />
     <ClCompile Include="..\..\softdraw\input\win32_input.c" />
-    <ClCompile Include="..\..\softdraw\monitor\win32_monitor.c" />
     <ClCompile Include="..\..\softdraw\timer\timer.c" />
     <ClCompile Include="..\..\softdraw\timer\win32_timer.c" />
     <ClCompile Include="..\..\softdraw\window\win32_window.c" />

@@ -79,12 +79,14 @@ bool _sft_window_open(sft_window* window, const char* title, uint32_t width, uin
 
     flagsToWin32Style(flags, &style, &styleEx);
 				
-RECT winRect = {0, 0, window->width, window->height};
-AdjustWindowRect(&winRect, flags, 0);
+    RECT winRect = {0, 0, window->width, window->height};
+    AdjustWindowRect(&winRect, style, 0);
+    winRect.right -= winRect.left;
+    winRect.bottom -= winRect.top;
 
     window->handle = CreateWindowExA(
         styleEx, "softdraw", window->title, style,
-        window->left, window->top, winRect.right - winRect.left, winRect.bottom - winRect.top,
+        window->left, window->top, winRect.right, winRect.bottom,
         NULL, NULL, GetModuleHandleA(NULL), NULL);
 
     if (window->handle)
@@ -177,8 +179,19 @@ void _sft_window_setTitle(sft_window* window)
 void _sft_window_setSize(sft_window* window, uint64_t width, uint64_t height)
 {
     if (window)
-        SetWindowPos(window->handle, NULL, 0, 0, width, height,
+    {
+        uint32_t style = 0;
+        uint32_t styleEx = 0;
+        flagsToWin32Style(window->flags, &style, &styleEx);
+
+        RECT winRect = { 0, 0, window->width, window->height };
+        AdjustWindowRect(&winRect, style, 0);
+        winRect.right -= winRect.left;
+        winRect.bottom -= winRect.top;
+
+        SetWindowPos(window->handle, NULL, 0, 0, winRect.right, winRect.bottom,
             SWP_NOACTIVATE | SWP_NOZORDER | SWP_NOMOVE);
+    }
 }
 
 void _sft_window_setPos(sft_window* window, uint64_t left, uint64_t top)

@@ -96,8 +96,8 @@ sft_window* sft_window_open(const char* title, uint32_t width, uint32_t height, 
 
         if (window->flags & sft_flag_fullscreen)
         {
-            window->width = sft_screenWidth();
-            window->height = sft_screenHeight();
+            window->width = width = sft_screenWidth();
+            window->height = height = sft_screenHeight();
         }
         else
         {
